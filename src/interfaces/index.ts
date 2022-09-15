@@ -1,5 +1,5 @@
 export interface IHeartStoneResponse {
-    [key: string]: IHeartStoneCard[];
+    [key: string]: Array<IHeartStoneCard>;
 }
 
 export interface IHeartStoneCard {
@@ -17,9 +17,9 @@ export interface IHeartStoneCard {
     attack?: number;
     health?: number;
     artist?: string;
-    mechanics?: IMechanics[];
+    mechanics?: Array<IMechanic>;
 }
 
-export interface IMechanics {
+export interface IMechanic {
     name: string;
 }

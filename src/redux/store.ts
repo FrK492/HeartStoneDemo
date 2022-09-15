@@ -5,6 +5,10 @@ export const store = configureStore({
   reducer: {
     heartStoneCards: cardsSlice
   },
+  middleware: (getDefaultMiddleware) =>
+  getDefaultMiddleware({
+    serializableCheck: false,
+  })
 })
 
 // From documentation

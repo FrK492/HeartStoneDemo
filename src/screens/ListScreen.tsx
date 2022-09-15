@@ -1,5 +1,6 @@
 import React, { FC, useEffect } from 'react'
-import { View, Text, ActivityIndicator } from 'react-native'
+import { View, Text, ActivityIndicator, FlatList } from 'react-native'
+import { MechanicCard } from '../components/MechanicCard'
 import { fetchCardsFromApi } from '../redux/cardsSlice'
 import { useAppDispatch, useAppSelector } from '../redux/hooks'
 
@@ -7,7 +8,7 @@ interface IProps {}
 
 const ListScreen: FC<IProps> = (props) => {
     const dispatch = useAppDispatch()
-    const { cards, loading } = useAppSelector(state => state.heartStoneCards)
+    const { mechanics, loading } = useAppSelector(state => state.heartStoneCards)
     
     useEffect(() => {
         dispatch(fetchCardsFromApi())
@@ -23,7 +24,11 @@ const ListScreen: FC<IProps> = (props) => {
 
     return (
         <View>
-            <Text>List Screen</Text>
+            <FlatList
+                data={mechanics}
+                keyExtractor={(item, i) => `${item}-${i}`}
+                renderItem={({ item }) => <MechanicCard mechanicName={item} />}
+            />
         </View>
     )
 }
