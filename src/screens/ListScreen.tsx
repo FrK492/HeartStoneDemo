@@ -1,18 +1,25 @@
 import React, { FC, useEffect } from 'react'
-import { View, Text, ActivityIndicator, FlatList } from 'react-native'
+import { View, ActivityIndicator, FlatList } from 'react-native'
 import { MechanicCard } from '../components/MechanicCard'
 import { fetchCardsFromApi } from '../redux/cardsSlice'
 import { useAppDispatch, useAppSelector } from '../redux/hooks'
+import { useNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 
 interface IProps {}
 
 const ListScreen: FC<IProps> = (props) => {
     const dispatch = useAppDispatch()
+    const navigation = useNavigation<NativeStackNavigationProp<any>>()
     const { mechanics, loading } = useAppSelector(state => state.heartStoneCards)
     
     useEffect(() => {
         dispatch(fetchCardsFromApi())
     }, [])
+
+    const navigateToDetail = (mechanicName: String) => {
+        navigation.navigate('detail_screen', { mechanicName })
+    }
 
     if (loading) {
         return (
@@ -27,7 +34,11 @@ const ListScreen: FC<IProps> = (props) => {
             <FlatList
                 data={mechanics}
                 keyExtractor={(item, i) => `${item}-${i}`}
-                renderItem={({ item }) => <MechanicCard mechanicName={item} />}
+                renderItem={({ item }) => 
+                    <MechanicCard
+                        onCardPress={(mechanicName) => navigateToDetail(mechanicName)}
+                        mechanicName={item}
+                    />}
             />
         </View>
     )
