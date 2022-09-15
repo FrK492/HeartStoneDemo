@@ -1,17 +1,22 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
 import { IHeartStoneCard } from '../interfaces'
 import { getCards } from '../service/cards'
+import {
+    convertHeartStoneResponseToArray,
+    exportMechanicsFromHeartStoneCards
+} from '../utils/arrayManipluation'
 
 
 export interface HeartStoneState {
     cards: Array<IHeartStoneCard>
-    loading: boolean
+    loading: boolean,
+    mechanics: Array<string>
 }
 
 const initialState: HeartStoneState = {
     cards: [],
-    loading: false
+    loading: false,
+    mechanics: []
 }
 
 export const fetchCardsFromApi = createAsyncThunk(
@@ -37,7 +42,12 @@ export const cardsSlice = createSlice({
             state.loading = false
         }),
         builder.addCase(fetchCardsFromApi.fulfilled, (state, { payload }) => {
-            // #TODO: Handle response and transform data here 
+            if (payload) {
+                const cards = convertHeartStoneResponseToArray(payload)
+                state.cards = cards
+                state.mechanics = exportMechanicsFromHeartStoneCards(cards)
+            }
+            state.loading = false
         })
     }
 })
