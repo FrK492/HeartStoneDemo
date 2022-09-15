@@ -13,8 +13,16 @@ const App: FC = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen options={{title: 'List Screen'}} name='list_screen' component={ListScreen} />
-          <Stack.Screen options={{title: 'Detail Screen'}} name='detail_screen' component={DetailScreen} />
+          <Stack.Screen
+            options={{title: 'Mechanics List'}}
+            name='list_screen'
+            component={ListScreen}
+          />
+          <Stack.Screen
+            options={({ route }: any) => ({ title: route.params.mechanicName })}
+            name='detail_screen'
+            component={DetailScreen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

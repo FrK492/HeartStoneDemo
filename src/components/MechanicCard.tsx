@@ -3,11 +3,12 @@ import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 
 interface IProps {
     mechanicName: string
+    onCardPress: (mechanicName: string) => void
 }
 
 export const MechanicCard: FC<IProps> = (props) => {
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity onPress={() => props.onCardPress(props.mechanicName)} style={styles.container}>
             <Text>{props.mechanicName}</Text>
         </TouchableOpacity>
     )

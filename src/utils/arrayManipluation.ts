@@ -23,3 +23,14 @@ export const exportMechanicsFromHeartStoneCards = (cards: Array<IHeartStoneCard>
 
     return uniqueMechanics
 }
+
+export const filterHeartStoneCardsByMechanic = (query: string, cards: Array<IHeartStoneCard>): Array<IHeartStoneCard> => {
+    const filteredCards = cards.filter(card => {
+        if (card.mechanics) {
+            return card.mechanics.some(mechanic => mechanic.name === query)
+        } else {
+            return false
+        }
+    })
+    return filteredCards
+}
