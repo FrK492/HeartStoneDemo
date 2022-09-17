@@ -1,0 +1,236 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components HeartStoneCard renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "borderRadius": 5,
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "margin": 10,
+      "minHeight": 200,
+      "padding": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 2,
+      }
+    }
+  >
+    <Text>
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 14,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Card Name: 
+      </Text>
+      testName2
+    </Text>
+    <Text>
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 14,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Card Faction: 
+      </Text>
+      testFaction3
+    </Text>
+    <Text>
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 14,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Card Set: 
+      </Text>
+      testSet2
+    </Text>
+    <Text>
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 14,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Card Text: 
+      </Text>
+      testText2
+    </Text>
+    <Text>
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 14,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Card Type: 
+      </Text>
+      testType2
+    </Text>
+    <Text
+      style={
+        Object {
+          "color": "black",
+          "fontSize": 14,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      Mechanics: 
+    </Text>
+    <RCTScrollView
+      data={
+        Array [
+          Object {
+            "name": "testMechanic",
+          },
+        ]
+      }
+      getItem={[Function]}
+      getItemCount={[Function]}
+      keyExtractor={[Function]}
+      onContentSizeChange={[Function]}
+      onLayout={[Function]}
+      onMomentumScrollBegin={[Function]}
+      onMomentumScrollEnd={[Function]}
+      onScroll={[Function]}
+      onScrollBeginDrag={[Function]}
+      onScrollEndDrag={[Function]}
+      removeClippedSubviews={false}
+      renderItem={[Function]}
+      scrollEventThrottle={50}
+      stickyHeaderIndices={Array []}
+      viewabilityConfigCallbackPairs={Array []}
+    >
+      <View>
+        <View
+          onLayout={[Function]}
+          style={null}
+        >
+          <Text>
+            testMechanic
+          </Text>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "uri": "https://dummyimage.com/300",
+        }
+      }
+      style={
+        Object {
+          "height": 100,
+          "resizeMode": "contain",
+          "width": 100,
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`Components Loader renders corretly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <ActivityIndicator
+    size="large"
+  />
+</View>
+`;
+
+exports[`Components MechacnicCard renders correctly 1`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "backgroundColor": "white",
+      "borderRadius": 5,
+      "margin": 10,
+      "opacity": 1,
+      "padding": 10,
+    }
+  }
+>
+  <Text />
+</View>
+`;
+
+exports[`Components SearchInput renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "borderRadius": 5,
+      "height": 50,
+      "justifyContent": "center",
+      "margin": 5,
+    }
+  }
+>
+  <TextInput
+    onChangeText={[Function]}
+    onSubmitEditing={[Function]}
+    placeholder="Search Cards"
+    returnKeyLabel="Search"
+    returnKeyType="search"
+    style={
+      Object {
+        "paddingHorizontal": 10,
+      }
+    }
+    value=""
+  />
+</View>
+`;
