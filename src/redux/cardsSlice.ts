@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { IHeartStoneCard } from '../interfaces'
-import { getCards } from '../service/cards'
+import { getCards, searchCards } from '../service/cards'
 import {
     convertHeartStoneResponseToArray,
     exportMechanicsFromHeartStoneCards
@@ -9,14 +9,16 @@ import {
 
 export interface HeartStoneState {
     cards: Array<IHeartStoneCard>
-    loading: boolean,
+    loading: boolean
     mechanics: Array<string>
+    searchResults: Array<IHeartStoneCard>
 }
 
 const initialState: HeartStoneState = {
     cards: [],
     loading: false,
-    mechanics: []
+    mechanics: [],
+    searchResults: []
 }
 
 export const fetchCardsFromApi = createAsyncThunk(
@@ -30,10 +32,25 @@ export const fetchCardsFromApi = createAsyncThunk(
     }
 )
 
+export const searchCardsFromApi = createAsyncThunk(
+    'heartstoneDemo/search',
+    async (searchTerm: string) => {
+        const response = await searchCards(searchTerm)
+        if (response) {
+            return response
+        }
+        return null
+    }
+)
+
 export const cardsSlice = createSlice({
     name: 'cards',
     initialState,
-    reducers: {},
+    reducers: {
+        resetSearchResults: (state) => {
+            state.searchResults = []
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchCardsFromApi.pending, (state) => {
             state.loading = true
@@ -48,10 +65,22 @@ export const cardsSlice = createSlice({
                 state.mechanics = exportMechanicsFromHeartStoneCards(cards)
             }
             state.loading = false
+        }),
+        builder.addCase(searchCardsFromApi.pending, (state) => {
+            state.loading = true
+        }),
+        builder.addCase(searchCardsFromApi.rejected, (state) => {
+            state.loading = false
+        }),
+        builder.addCase(searchCardsFromApi.fulfilled, (state, { payload }) => {
+            if (payload) {
+                state.searchResults = payload
+            }
+            state.loading = false
         })
     }
 })
 
-export const {  } = cardsSlice.actions
+export const { resetSearchResults } = cardsSlice.actions
 
 export default cardsSlice.reducer
